@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <clipPath id="rounded">
+      <rect width="512" height="512" rx="96"/>
+    </clipPath>
+  </defs>
+  <!-- Serbian flag: red, blue, white -->
+  <g clip-path="url(#rounded)">
+    <rect y="0"   width="512" height="171" fill="#C6363C"/>
+    <rect y="171" width="512" height="171" fill="#0C4076"/>
+    <rect y="342" width="512" height="170" fill="#ffffff"/>
+  </g>
+  <!-- White letter S -->
+  <text x="256" y="370" font-family="Arial, sans-serif" font-weight="700" font-size="320" text-anchor="middle" fill="#ffffff" stroke="#C6363C" stroke-width="8">S</text>
+</svg>
