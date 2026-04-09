@@ -1215,12 +1215,6 @@ body {
 .footer-family a { font-size: 13px; color: #888; transition: color 0.2s; }
 .footer-family a:hover { color: white; }
 
-/* FAQ open state */
-.faq-item.open .faq-arrow { transform: rotate(45deg); }
-.faq-item.open .faq-a { display: block; }
-.faq-a { display: none; }
-.faq-q { width: 100%; background: none; border: none; cursor: pointer; text-align: left; font-family: 'Nunito', sans-serif; }
-.faq-arrow { transition: transform 0.2s; display: inline-block; }
 
 @media (max-width: 900px) {
   .solution-grid, .how-grid { grid-template-columns: 1fr; }
