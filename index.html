@@ -55,8 +55,12 @@
         <span class="logo-text">IziSerb</span>
       </a>
       <div class="nav-right">
-        <a href="https://cabinet.iziserb.com" class="nav-login">Войти в кабинет</a>
-        <a href="https://iziserb.lemonsqueezy.com/checkout/buy/f3c32356-104a-49e4-bbdb-55259380b00b" class="nav-cta">Попробовать бесплатно</a>
+        <div class="lang-toggle">
+          <button class="lang-btn active" id="btn-ru" onclick="switchLang('ru')">RU</button>
+          <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
+        </div>
+        <a href="https://cabinet.iziserb.com" class="nav-login" data-i18n="nav-login">Войти в кабинет</a>
+        <a href="https://iziserb.lemonsqueezy.com/checkout/buy/f3c32356-104a-49e4-bbdb-55259380b00b" class="nav-cta" data-i18n="nav-cta">Попробовать бесплатно</a>
       </div>
     </div>
   </nav>
@@ -683,7 +687,7 @@
     <div class="final-cta-inner">
       <div class="final-cta-emoji">🇷🇸</div>
       <h2 class="final-cta-title">Начни говорить по-сербски уже сегодня</h2>
-      <p class="final-cta-sub">7 дней бесплатно. Карта не нужна. Отмена в любой момент.</p>
+      <p class="final-cta-sub">7 дней бесплатно. Отмена в любой момент.</p>
       <a href="https://iziserb.lemonsqueezy.com/checkout/buy/f3c32356-104a-49e4-bbdb-55259380b00b" class="btn-final">
         <span>Попробовать бесплатно</span>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -728,6 +732,398 @@
   </footer>
 
   <script src="app.js" defer></script>
+
+  <script>
+  // ============================================================
+  // LANGUAGE SWITCHER
+  // ============================================================
+  const TRANSLATIONS = {
+    'nav-login':     { ru: 'Войти в кабинет',    en: 'Sign In' },
+    'nav-cta':       { ru: 'Попробовать бесплатно', en: 'Try for Free' },
+
+    // Hero
+    'hero-badge':    { ru: 'Специально для русскоязычных на Балканах', en: 'For Russian speakers in the Balkans' },
+    'hero-title':    { ru: 'Сербский —<br><span class="hero-title-accent">не сложный.</span><br>Просто учи с нами.', en: 'Serbian —<br><span class="hero-title-accent">not difficult.</span><br>Just learn with us.' },
+    'hero-sub':      { ru: 'IziSerb помогает русскоязычным жителям Балкан освоить сербский легко — через реальные диалоги, сценарии из жизни и умное повторение.', en: 'IziSerb helps Russian speakers in the Balkans master Serbian easily — through real dialogues, life scenarios and smart repetition.' },
+    'btn-start':     { ru: 'Начать бесплатно — 7 дней', en: 'Start Free — 7 Days' },
+    'hero-note':     { ru: '7 дней бесплатно · Отмена в любой момент', en: '7 days free · Cancel anytime' },
+    'stat-lbl-1':    { ru: 'слов и фраз',  en: 'words & phrases' },
+    'stat-lbl-2':    { ru: 'сценариев',    en: 'scenarios' },
+    'stat-lbl-3':    { ru: 'живых фраз',   en: 'live phrases' },
+    'preview-label': { ru: 'ПЕРЕВЕДИ ФРАЗУ', en: 'TRANSLATE THE PHRASE' },
+    'preview-opt-1': { ru: 'Где ближайшая аптека?',    en: 'Where is the nearest pharmacy?' },
+    'preview-opt-2': { ru: 'Когда закроется магазин?', en: 'When does the store close?' },
+    'preview-opt-3': { ru: 'Сколько это стоит?',       en: 'How much does it cost?' },
+    'float-1-title': { ru: '7 дней подряд',    en: '7 days in a row' },
+    'float-1-sub':   { ru: 'Отличный прогресс!', en: 'Great progress!' },
+    'float-2-sub':   { ru: 'за эту неделю',    en: 'this week' },
+    'float-3-title': { ru: 'Достижение!',      en: 'Achievement!' },
+    'float-3-sub':   { ru: 'Первый разговор',  en: 'First conversation' },
+
+    // Proof bar
+    'proof-text':    { ru: 'Нам доверяют жители Балкан', en: 'Trusted by residents of the Balkans' },
+    'proof-flag-1':  { ru: '🇷🇸 Сербия',      en: '🇷🇸 Serbia' },
+    'proof-flag-2':  { ru: '🇲🇪 Черногория',  en: '🇲🇪 Montenegro' },
+    'proof-flag-3':  { ru: '🇧🇦 Босния',      en: '🇧🇦 Bosnia' },
+    'proof-flag-4':  { ru: '🇲🇰 Македония',   en: '🇲🇰 Macedonia' },
+
+    // Pain
+    'pain-tag':      { ru: 'Тебе знакомо?',  en: 'Sound familiar?' },
+    'pain-title':    { ru: 'Жизнь на Балканах без сербского — постоянный стресс', en: 'Life in the Balkans without Serbian — constant stress' },
+    'pain-sub':      { ru: 'Ты переехал, но каждый поход в МУП, банк или на пиjацу превращается в квест.', en: 'You moved, but every trip to the MUP, bank or market turns into a quest.' },
+    'pain-c1-title': { ru: '«Сербский — это почти русский»', en: '"Serbian is almost Russian"' },
+    'pain-c1-text':  { ru: 'Кажется что похоже, но ложные друзья постоянно подводят. «Понос» — это диарея, «магазин» — склад. Начинал разговаривать и попадал в неловкие ситуации.', en: 'Seems similar, but false friends constantly trip you up. «Понос» means diarrhea, «магазин» means warehouse. You start speaking and end up in awkward situations.' },
+    'pain-c2-title': { ru: 'МУП, боравак, ПИБ',  en: 'MUP, boravak, PIB' },
+    'pain-c2-text':  { ru: 'Продление ВНЖ, регистрация, налоговый номер — всё на сербском. Один неправильный ответ чиновнику и очередь потеряна, начинай сначала.', en: 'Residence extension, registration, tax number — all in Serbian. One wrong answer to an official and your place is lost.' },
+    'pain-c3-title': { ru: 'Банки и документы', en: 'Banks and documents' },
+    'pain-c3-text':  { ru: 'Открыть счёт, получить карту, разобраться с условиями договора — клерки не всегда говорят по-английски и теряют терпение.', en: 'Opening an account, getting a card, understanding contract terms — clerks don\'t always speak English and lose patience.' },
+    'pain-c4-title': { ru: 'Врач и аптека', en: 'Doctor and pharmacy' },
+    'pain-c4-text':  { ru: 'Объяснить симптомы, понять назначение врача, прочитать рецепт — это не та ситуация где можно угадывать и полагаться на интуицию.', en: 'Explaining symptoms, understanding a doctor\'s prescription — this is not a situation where you can guess and rely on intuition.' },
+    'pain-c5-title': { ru: 'Кафана и общение', en: 'Kafana and socializing' },
+    'pain-c5-text':  { ru: 'Местные общаются быстро, шутят, используют сленг и идиомы. Хочется быть своим в кругу, а не вечным чужаком с телефоном-переводчиком.', en: 'Locals talk fast, joke, use slang and idioms. You want to fit in, not be the eternal outsider with a phone translator.' },
+    'pain-c6-title': { ru: 'Работа и бизнес', en: 'Work and business' },
+    'pain-c6-text':  { ru: 'Открыть ДОО, общаться с коллегами и партнёрами, пройти собеседование — без уверенного сербского это намного сложнее и дольше.', en: 'Opening a DOO, communicating with colleagues and partners, passing an interview — without confident Serbian it\'s much harder.' },
+
+    // Solution
+    'sol-tag':       { ru: 'Наш подход', en: 'Our approach' },
+    'sol-title':     { ru: 'IziSerb учит тому, что нужно в реальной жизни', en: 'IziSerb teaches what you need in real life' },
+    'sol-sub':       { ru: 'Никакой сухой грамматики. Только живые фразы, реальные ситуации и 10 минут в день — этого достаточно.', en: 'No dry grammar. Only live phrases, real situations and 10 minutes a day — that\'s enough.' },
+    'sol-li-1':      { ru: 'Сценарии из балканской жизни: МУП, банк, аптека, пиjаца, кафана, ДОО', en: 'Scenarios from Balkan life: MUP, bank, pharmacy, market, kafana, DOO' },
+    'sol-li-2':      { ru: 'Умное повторение — система сама напоминает что повторить и когда', en: 'Smart repetition — the system reminds you what to review and when' },
+    'sol-li-3':      { ru: 'Оба алфавита сразу — кириллица и латиница с транскрипцией на русском', en: 'Both alphabets at once — Cyrillic and Latin with Russian transcription' },
+    'sol-li-4':      { ru: 'Прогресс и мотивация — стрики, XP, достижения как в игре', en: 'Progress and motivation — streaks, XP, achievements like a game' },
+    'btn-sol':       { ru: 'Попробовать бесплатно →', en: 'Try for Free →' },
+    'sc-1-title':    { ru: 'В МУП-е',    en: 'At the MUP' },
+    'sc-1-trans':    { ru: 'Мне нужен вид на жительство', en: 'I need a residence permit' },
+    'sc-2-title':    { ru: 'В банке',    en: 'At the bank' },
+    'sc-2-trans':    { ru: 'Хочу открыть счёт', en: 'I want to open an account' },
+    'sc-3-title':    { ru: 'В аптеке',   en: 'At the pharmacy' },
+    'sc-3-trans':    { ru: 'Есть что-то от головной боли?', en: 'Do you have anything for a headache?' },
+    'sc-4-title':    { ru: 'На пиjаци',  en: 'At the market' },
+    'sc-4-trans':    { ru: 'Сколько стоит килограмм?', en: 'How much is a kilogram?' },
+
+    // Features
+    'feat-tag':      { ru: 'Возможности', en: 'Features' },
+    'feat-title':    { ru: 'Всё что нужно — в одном приложении', en: 'Everything you need — in one app' },
+    'feat-sub':      { ru: 'Никаких лишних кнопок и сложных меню. Открываешь — и сразу учишься.', en: 'No extra buttons or complex menus. Open it — and start learning right away.' },
+    'feat-1-title':  { ru: '20+ реальных сценариев', en: '20+ real scenarios' },
+    'feat-1-text':   { ru: 'МУП, банк, аптека, пиjаца, кафана, врач, аренда, работа — диалоги из реальной жизни на Балканах.', en: 'MUP, bank, pharmacy, market, kafana, doctor, rental, work — dialogues from real Balkan life.' },
+    'feat-2-title':  { ru: 'Умное повторение (SRS)', en: 'Smart repetition (SRS)' },
+    'feat-2-text':   { ru: 'Алгоритм сам решает что повторить сегодня. Слова которые ты забываешь — показываются чаще.', en: 'The algorithm decides what to review today. Words you forget appear more often.' },
+    'feat-3-title':  { ru: 'Оба алфавита сразу', en: 'Both alphabets at once' },
+    'feat-3-text':   { ru: 'Кириллица и латиница с первого урока. Транскрипция русскими буквами — произносишь правильно без подготовки.', en: 'Cyrillic and Latin from lesson one. Russian transcription — pronounce correctly without preparation.' },
+    'feat-4-title':  { ru: '100+ живых фраз', en: '100+ live phrases' },
+    'feat-4-text':   { ru: 'То как сербы говорят на самом деле — восклицания, застольные тосты, сленг, телефонный этикет.', en: 'How Serbs actually talk — exclamations, toasts, slang, phone etiquette.' },
+    'feat-5-title':  { ru: 'Стрики и достижения', en: 'Streaks and achievements' },
+    'feat-5-text':   { ru: 'XP, уровни, 15 достижений — учёба превращается в игру. Ежедневная цель не даёт останавливаться.', en: 'XP, levels, 15 achievements — learning becomes a game. A daily goal keeps you going.' },
+    'feat-6-title':  { ru: 'Работает офлайн', en: 'Works offline' },
+    'feat-6-text':   { ru: 'PWA-приложение устанавливается на телефон и работает без интернета. Учишь в метро, в очереди, где угодно.', en: 'PWA app installs on your phone and works without internet. Learn on the metro, in a queue, anywhere.' },
+
+    // How it works
+    'how-tag':       { ru: 'Как это работает', en: 'How it works' },
+    'how-title':     { ru: 'Три шага до уверенного сербского', en: 'Three steps to confident Serbian' },
+    'how-sub':       { ru: 'Никакой подготовки. Просто открой и начни.', en: 'No preparation. Just open and start.' },
+    'step-1-title':  { ru: 'Открой приложение', en: 'Open the app' },
+    'step-1-desc':   { ru: 'Регистрация за 10 секунд. Никаких анкет и тестов на уровень входа.', en: 'Sign up in 10 seconds. No forms or placement tests.' },
+    'step-2-title':  { ru: 'Учись 10 минут в день', en: 'Learn 10 minutes a day' },
+    'step-2-desc':   { ru: 'Проходи уроки, сценарии и карточки. Система сама подбирает темп под тебя.', en: 'Complete lessons, scenarios and flashcards. The system adjusts the pace to you.' },
+    'step-3-title':  { ru: 'Говори по-сербски', en: 'Speak Serbian' },
+    'step-3-desc':   { ru: 'Уже через 2 недели ты начнёшь понимать речь вокруг и справляться с бытовыми ситуациями.', en: 'In just 2 weeks you\'ll start understanding speech around you and handling everyday situations.' },
+    'how-card-title':{ ru: 'Мой прогресс', en: 'My Progress' },
+    'how-stat-1':    { ru: 'Дней подряд',      en: 'Day streak' },
+    'how-stat-2':    { ru: 'Всего XP',         en: 'Total XP' },
+    'how-stat-3':    { ru: 'Уроков пройдено',  en: 'Lessons done' },
+    'how-stat-4':    { ru: 'Сценариев',        en: 'Scenarios' },
+    'how-level-lbl': { ru: 'Уровень 6',        en: 'Level 6' },
+
+    // Testimonials
+    'test-tag':      { ru: 'Отзывы', en: 'Reviews' },
+    'test-title':    { ru: 'Русскоязычные на Балканах уже говорят по-сербски', en: 'Russian speakers in the Balkans are already speaking Serbian' },
+    'review-1-text': { ru: '«Переехала в Белград и понятия не имела с чего начать. За месяц с IziSerb смогла самостоятельно пройти всю процедуру продления боравака. Клерк в МУП-е даже похвалил произношение!»', en: '"I moved to Belgrade with no idea where to start. In a month with IziSerb I completed the entire boravak renewal on my own. The MUP clerk even complimented my pronunciation!"' },
+    'review-1-name': { ru: 'Анна М.',  en: 'Anna M.' },
+    'review-1-loc':  { ru: '🇷🇸 Белград, 6 месяцев с IziSerb',  en: '🇷🇸 Belgrade, 6 months with IziSerb' },
+    'review-2-text': { ru: '«Сербский похож на русский, но обманчиво. IziSerb помог разобраться именно там где это сходство подводит. Блок про банки и ПИБ — отдельное спасибо, сэкономил кучу нервов!»', en: '"Serbian resembles Russian, but deceivingly. IziSerb helped exactly where that similarity fails. The banks and PIB section — special thanks, saved a ton of nerves!"' },
+    'review-2-name': { ru: 'Дмитрий К.', en: 'Dmitry K.' },
+    'review-2-loc':  { ru: '🇷🇸 Нови-Сад, 8 месяцев с IziSerb', en: '🇷🇸 Novi Sad, 8 months with IziSerb' },
+    'review-3-text': { ru: '«Живу в Подгорице, учу по 15 минут в день в обеденный перерыв. За 6 недель начал понимать местные новости и нормально общаться в кафане. Рекомендую всем релокантам на Балканах!»', en: '"I live in Podgorica, study 15 minutes a day during lunch. In 6 weeks I started understanding local news and chatting at the kafana. I recommend it to all relocators in the Balkans!"' },
+    'review-3-name': { ru: 'Игорь Р.', en: 'Igor R.' },
+    'review-3-loc':  { ru: '🇲🇪 Подгорица, 5 месяцев с IziSerb', en: '🇲🇪 Podgorica, 5 months with IziSerb' },
+
+    // PWA
+    'pwa-tag':       { ru: 'Установка', en: 'Installation' },
+    'pwa-title':     { ru: 'Нас нет в App Store — и это хорошо', en: 'We\'re not in the App Store — and that\'s good' },
+    'pwa-sub':       { ru: 'IziSerb — это PWA-приложение. Устанавливается прямо с сайта за 30 секунд, без магазинов приложений. Поэтому цена ниже: мы не платим комиссию до 30% в Apple и Google.', en: 'IziSerb is a PWA app. Install directly from the site in 30 seconds, no app stores needed. That\'s why the price is lower: we don\'t pay up to 30% commission to Apple and Google.' },
+    'pwa-ios-hint':  { ru: 'через Safari',  en: 'via Safari' },
+    'pwa-ios-1':     { ru: 'Откройте <strong>cabinet.iziserb.com</strong> в браузере <strong>Safari</strong>', en: 'Open <strong>cabinet.iziserb.com</strong> in <strong>Safari</strong>' },
+    'pwa-ios-2':     { ru: 'Нажмите кнопку <strong>«Поделиться»</strong> внизу экрана — значок квадрата со стрелкой ⬆', en: 'Tap the <strong>Share</strong> button at the bottom — the square icon with an arrow ⬆' },
+    'pwa-ios-3':     { ru: 'Прокрутите список и выберите <strong>«На экран "Домой"»</strong>', en: 'Scroll down and tap <strong>"Add to Home Screen"</strong>' },
+    'pwa-ios-4':     { ru: 'Нажмите <strong>«Добавить»</strong> — готово, значок появится на рабочем столе 🎉', en: 'Tap <strong>"Add"</strong> — done, the icon appears on your home screen 🎉' },
+    'pwa-and-hint':  { ru: 'через Chrome', en: 'via Chrome' },
+    'pwa-and-1':     { ru: 'Откройте <strong>cabinet.iziserb.com</strong> в браузере <strong>Chrome</strong>', en: 'Open <strong>cabinet.iziserb.com</strong> in <strong>Chrome</strong>' },
+    'pwa-and-2':     { ru: 'Нажмите <strong>три точки ⋮</strong> в правом верхнем углу', en: 'Tap <strong>three dots ⋮</strong> in the top right corner' },
+    'pwa-and-3':     { ru: 'Выберите <strong>«Добавить на главный экран»</strong>', en: 'Select <strong>"Add to Home Screen"</strong>' },
+    'pwa-and-4':     { ru: 'Нажмите <strong>«Установить»</strong> — готово, открывайте с рабочего стола 🎉', en: 'Tap <strong>"Install"</strong> — done, open it from your home screen 🎉' },
+    'pwa-note':      { ru: '💡 Работает как обычное приложение — без браузера, с иконкой на рабочем столе. Не нужно ничего скачивать.', en: '💡 Works like a regular app — no browser, with an icon on your home screen. Nothing to download.' },
+
+    // Pricing
+    'price-tag':     { ru: 'Цены',  en: 'Pricing' },
+    'price-title':   { ru: 'Первая неделя — бесплатно', en: 'First week — free' },
+    'price-sub':     { ru: 'Попробуй всё без ограничений. 7 дней бесплатно.', en: 'Try everything without limits. 7 days free.' },
+    'plan-1-name':   { ru: 'Помесячно', en: 'Monthly' },
+    'plan-1-period': { ru: '/ месяц',   en: '/ month' },
+    'plan-1-desc':   { ru: 'Гибкая подписка. Отменяй в любой момент.', en: 'Flexible subscription. Cancel anytime.' },
+    'plan-1-li-1':   { ru: '✓ Все уроки и сценарии',    en: '✓ All lessons and scenarios' },
+    'plan-1-li-2':   { ru: '✓ Умное повторение SRS',    en: '✓ Smart SRS repetition' },
+    'plan-1-li-3':   { ru: '✓ 100+ живых фраз',         en: '✓ 100+ live phrases' },
+    'plan-1-li-4':   { ru: '✓ Работает офлайн',         en: '✓ Works offline' },
+    'btn-price-1':   { ru: 'Начать бесплатно', en: 'Start Free' },
+    'plan-2-badge':  { ru: 'Выгоднее на 45%',  en: '45% cheaper' },
+    'plan-2-name':   { ru: 'Годовая подписка', en: 'Annual' },
+    'plan-2-period': { ru: '/ месяц',          en: '/ month' },
+    'plan-2-billed': { ru: '€59.88 в год',     en: '€59.88 per year' },
+    'plan-2-desc':   { ru: 'Лучший выбор для тех, кто серьёзно нацелен на результат.', en: 'Best choice for those seriously committed to results.' },
+    'plan-2-li-1':   { ru: '✓ Всё из месячного плана',   en: '✓ Everything in monthly plan' },
+    'plan-2-li-2':   { ru: '✓ Приоритетная поддержка',   en: '✓ Priority support' },
+    'plan-2-li-3':   { ru: '✓ Новые сценарии первым',    en: '✓ New scenarios first' },
+    'plan-2-li-4':   { ru: '✓ Экономия €48 в год',       en: '✓ Save €48 per year' },
+    'btn-price-2':   { ru: 'Начать бесплатно', en: 'Start Free' },
+    'price-note':    { ru: '7 дней бесплатно · Отмена в любой момент', en: '7 days free · Cancel anytime' },
+    'price-trust-1': { ru: '🔒 Безопасная оплата',         en: '🔒 Secure payment' },
+    'price-trust-2': { ru: '📱 Работает на любом устройстве', en: '📱 Works on any device' },
+
+    // FAQ
+    'faq-tag':   { ru: 'Вопросы и ответы', en: 'FAQ' },
+    'faq-title': { ru: 'Часто спрашивают', en: 'Frequently asked' },
+    'faq-q-1':   { ru: 'Я никогда не учил сербский. Подойдёт ли мне?', en: 'I\'ve never studied Serbian. Is it right for me?' },
+    'faq-a-1':   { ru: 'Да, IziSerb создан именно для тех, кто начинает с нуля. Транскрипция на русском помогает сразу произносить правильно, а сценарии построены от простого к сложному.', en: 'Yes, IziSerb is designed for absolute beginners. Russian transcription helps you pronounce correctly right away, and scenarios go from simple to complex.' },
+    'faq-q-2':   { ru: 'Сколько времени нужно тратить в день?', en: 'How much time do I need per day?' },
+    'faq-a-2':   { ru: 'Достаточно 10 минут в день. Один урок занимает 5–10 минут. Главное — регулярность. Ежедневные 10 минут дают лучший результат чем 2 часа раз в неделю.', en: '10 minutes a day is enough. One lesson takes 5–10 minutes. Consistency is key. Daily 10 minutes give better results than 2 hours once a week.' },
+    'faq-q-3':   { ru: 'Чем IziSerb отличается от других приложений?', en: 'How is IziSerb different from other apps?' },
+    'faq-a-3':   { ru: 'Большинство приложений созданы для всех языков и аудиторий. IziSerb создан специально для русскоязычных жителей Балкан — с реальными сербскими сценариями (МУП, банки, аренда), транскрипцией на русском и фразами которые реально используют сербы.', en: 'Most apps are made for all languages and audiences. IziSerb is built specifically for Russian speakers in the Balkans — with real Serbian scenarios (MUP, banks, rental), Russian transcription, and phrases Serbs actually use.' },
+    'faq-q-4':   { ru: 'Подходит ли для Черногории и Боснии?', en: 'Does it work for Montenegro and Bosnia?' },
+    'faq-a-4':   { ru: 'Да. Сербский, черногорский и боснийский взаимопонятны — носители прекрасно понимают друг друга. Выучив сербский с IziSerb, ты свободно общаешься по всем Балканам.', en: 'Yes. Serbian, Montenegrin and Bosnian are mutually intelligible. Learning Serbian with IziSerb, you can communicate freely across the Balkans.' },
+    'faq-q-5':   { ru: 'Как работает бесплатный период?', en: 'How does the free trial work?' },
+    'faq-a-5':   { ru: '7 дней полного доступа без каких-либо ограничений. После пробного периода начнётся платная подписка. Отменить можно в любой момент в личном кабинете.', en: '7 days of full access without any restrictions. After the trial, the paid subscription begins. Cancel anytime in your account.' },
+    'faq-q-6':   { ru: 'На каких устройствах работает приложение?', en: 'What devices does the app work on?' },
+    'faq-a-6':   { ru: 'IziSerb — это PWA (Progressive Web App). Работает в браузере на любом устройстве: iPhone, Android, планшет, компьютер. Можно установить на экран телефона как обычное приложение. Работает даже офлайн.', en: 'IziSerb is a PWA (Progressive Web App). Works in any browser on any device: iPhone, Android, tablet, computer. Install it on your phone like a regular app. Works even offline.' },
+
+    // Contact
+    'contact-tag':   { ru: 'Связаться с нами', en: 'Contact us' },
+    'contact-title': { ru: 'Есть вопросы?', en: 'Have questions?' },
+    'contact-sub':   { ru: 'Напишите нам — ответим в течение дня.', en: 'Write to us — we\'ll reply within the day.' },
+    'cf-name-lbl':   { ru: 'Ваше имя',   en: 'Your name' },
+    'cf-email-lbl':  { ru: 'Email',       en: 'Email' },
+    'cf-msg-lbl':    { ru: 'Сообщение',   en: 'Message' },
+    'cf-submit':     { ru: 'Отправить',   en: 'Send' },
+    'cf-success':    { ru: 'Спасибо! Мы ответим вам в ближайшее время.', en: 'Thank you! We\'ll get back to you soon.' },
+
+    // Final CTA
+    'final-title':   { ru: 'Начни говорить по-сербски уже сегодня', en: 'Start speaking Serbian today' },
+    'final-sub':     { ru: '7 дней бесплатно. Отмена в любой момент.', en: '7 days free. Cancel anytime.' },
+    'btn-final':     { ru: 'Попробовать бесплатно', en: 'Try for Free' },
+
+    // Footer
+    'footer-tagline':{ ru: 'Сербский — не сложный. Просто учи с нами.', en: 'Serbian — not difficult. Just learn with us.' },
+    'footer-prod':   { ru: 'Продукт',  en: 'Product' },
+    'footer-login':  { ru: 'Войти в кабинет', en: 'Sign In' },
+    'footer-price':  { ru: 'Цены',    en: 'Pricing' },
+    'footer-family': { ru: 'Семья Izi', en: 'Izi Family' },
+    'footer-comp':   { ru: 'Компания', en: 'Company' },
+    'footer-terms':  { ru: 'Условия использования', en: 'Terms of Use' },
+    'footer-privacy':{ ru: 'Политика конфиденциальности', en: 'Privacy Policy' },
+    'footer-refund': { ru: 'Возврат средств', en: 'Refund Policy' },
+    'footer-copy':   { ru: '© 2026 IziSerb. Все права защищены.', en: '© 2026 IziSerb. All rights reserved.' },
+  };
+
+  let currentLang = localStorage.getItem('iziserb-lang') || 'ru';
+
+  function switchLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('iziserb-lang', lang);
+    applyLang(lang);
+    document.getElementById('btn-ru').classList.toggle('active', lang === 'ru');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  }
+
+  function applyLang(lang) {
+    const T = TRANSLATIONS;
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => document.querySelectorAll(s);
+    const set = (sel, key) => { const el = $(sel); if (el && T[key]) el.innerHTML = T[key][lang]; };
+    const setArr = (sel, keys) => { $$(sel).forEach((el, i) => { if (keys[i] && T[keys[i]]) el.innerHTML = T[keys[i]][lang]; }); };
+
+    // Nav (data-i18n elements)
+    $$('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (T[key]) el.innerHTML = T[key][lang];
+    });
+
+    // Hero
+    set('.hero-badge span:last-child', 'hero-badge');
+    set('.hero-title', 'hero-title');
+    set('.hero-sub', 'hero-sub');
+    set('.hero-note', 'hero-note');
+    setArr('.hero-stat-lbl', ['stat-lbl-1','stat-lbl-2','stat-lbl-3']);
+    set('.preview-label', 'preview-label');
+    setArr('.preview-option', ['preview-opt-1','preview-opt-2','preview-opt-3']);
+    set('.float-card-1 .float-card-title', 'float-1-title');
+    set('.float-card-1 .float-card-sub',   'float-1-sub');
+    set('.float-card-2 .float-card-sub',   'float-2-sub');
+    set('.float-card-3 .float-card-title', 'float-3-title');
+    set('.float-card-3 .float-card-sub',   'float-3-sub');
+
+    // Hero buttons (keep SVG, replace text node)
+    $$('.btn-hero-primary').forEach(btn => {
+      if (btn.childNodes[0]) btn.childNodes[0].textContent = '\n            ' + T['btn-start'][lang] + '\n            ';
+    });
+
+    // Proof bar
+    set('.proof-bar-text', 'proof-text');
+    setArr('.proof-flag', ['proof-flag-1','proof-flag-2','proof-flag-3','proof-flag-4']);
+
+    // Pain
+    set('.pain .section-tag',   'pain-tag');
+    set('.pain .section-title', 'pain-title');
+    set('.pain .section-sub',   'pain-sub');
+    const painTitles = $$(`.pain-title`);
+    const painTexts  = $$(`.pain-text`);
+    const pcKeys = ['pain-c1-title','pain-c2-title','pain-c3-title','pain-c4-title','pain-c5-title','pain-c6-title'];
+    const ptKeys = ['pain-c1-text', 'pain-c2-text', 'pain-c3-text', 'pain-c4-text', 'pain-c5-text', 'pain-c6-text'];
+    painTitles.forEach((el, i) => { if (T[pcKeys[i]]) el.innerHTML = T[pcKeys[i]][lang]; });
+    painTexts.forEach((el, i)  => { if (T[ptKeys[i]]) el.innerHTML = T[ptKeys[i]][lang]; });
+
+    // Solution
+    set('.solution .section-tag',   'sol-tag');
+    set('.solution .section-title', 'sol-title');
+    set('.solution .section-sub',   'sol-sub');
+    setArr('.solution-item span:last-child', ['sol-li-1','sol-li-2','sol-li-3','sol-li-4']);
+    set('.btn-solution', 'btn-sol');
+    setArr('.sc-title', ['sc-1-title','sc-2-title','sc-3-title','sc-4-title']);
+    setArr('.sc-trans',  ['sc-1-trans','sc-2-trans','sc-3-trans','sc-4-trans']);
+
+    // Features
+    set('.features .section-tag',   'feat-tag');
+    set('.features .section-title', 'feat-title');
+    set('.features .section-sub',   'feat-sub');
+    setArr('.feature-title', ['feat-1-title','feat-2-title','feat-3-title','feat-4-title','feat-5-title','feat-6-title']);
+    setArr('.feature-text',  ['feat-1-text', 'feat-2-text', 'feat-3-text', 'feat-4-text', 'feat-5-text', 'feat-6-text']);
+
+    // How
+    set('.how .section-tag',   'how-tag');
+    set('.how .section-title', 'how-title');
+    set('.how .section-sub',   'how-sub');
+    setArr('.step-title', ['step-1-title','step-2-title','step-3-title']);
+    setArr('.step-desc',  ['step-1-desc', 'step-2-desc', 'step-3-desc']);
+    set('.how-card-title', 'how-card-title');
+    setArr('.how-stat-row span:first-child', ['how-stat-1','how-stat-2','how-stat-3','how-stat-4']);
+    set('.how-level-label span:first-child', 'how-level-lbl');
+
+    // Testimonials
+    set('.testimonials .section-tag',   'test-tag');
+    set('.testimonials .section-title', 'test-title');
+    setArr('.review-text', ['review-1-text','review-2-text','review-3-text']);
+    setArr('.review-name', ['review-1-name','review-2-name','review-3-name']);
+    setArr('.review-loc',  ['review-1-loc', 'review-2-loc', 'review-3-loc']);
+
+    // PWA
+    set('.pwa-section .section-tag',   'pwa-tag');
+    set('.pwa-section .section-title', 'pwa-title');
+    set('.pwa-subtitle', 'pwa-sub');
+    const pwaHints = $$('.pwa-card-hint');
+    if (pwaHints[0]) pwaHints[0].innerHTML = T['pwa-ios-hint'][lang];
+    if (pwaHints[1]) pwaHints[1].innerHTML = T['pwa-and-hint'][lang];
+    const pwaStepSpans = $$('.pwa-step span:last-child');
+    const pwaStepKeys = ['pwa-ios-1','pwa-ios-2','pwa-ios-3','pwa-ios-4','pwa-and-1','pwa-and-2','pwa-and-3','pwa-and-4'];
+    pwaStepSpans.forEach((el, i) => { if (T[pwaStepKeys[i]]) el.innerHTML = T[pwaStepKeys[i]][lang]; });
+    set('.pwa-note', 'pwa-note');
+
+    // Pricing
+    set('.pricing .section-tag',   'price-tag');
+    set('.pricing .section-title', 'price-title');
+    set('.pricing .section-sub',   'price-sub');
+    const cards = $$('.pricing-card');
+    if (cards[0]) {
+      cards[0].querySelector('.pricing-plan').innerHTML     = T['plan-1-name'][lang];
+      cards[0].querySelector('.pricing-period').innerHTML   = T['plan-1-period'][lang];
+      cards[0].querySelector('.pricing-desc').innerHTML     = T['plan-1-desc'][lang];
+      const li0 = cards[0].querySelectorAll('.pricing-features li');
+      ['plan-1-li-1','plan-1-li-2','plan-1-li-3','plan-1-li-4'].forEach((k,i) => { if(li0[i]) li0[i].innerHTML = T[k][lang]; });
+      const btn0 = cards[0].querySelector('a.btn-pricing-secondary');
+      if (btn0) btn0.innerHTML = T['btn-price-1'][lang];
+    }
+    if (cards[1]) {
+      cards[1].querySelector('.pricing-badge').innerHTML    = T['plan-2-badge'][lang];
+      cards[1].querySelector('.pricing-plan').innerHTML     = T['plan-2-name'][lang];
+      cards[1].querySelector('.pricing-period').innerHTML   = T['plan-2-period'][lang];
+      cards[1].querySelector('.pricing-billed').innerHTML   = T['plan-2-billed'][lang];
+      cards[1].querySelector('.pricing-desc').innerHTML     = T['plan-2-desc'][lang];
+      const li1 = cards[1].querySelectorAll('.pricing-features li');
+      ['plan-2-li-1','plan-2-li-2','plan-2-li-3','plan-2-li-4'].forEach((k,i) => { if(li1[i]) li1[i].innerHTML = T[k][lang]; });
+      const btn1 = cards[1].querySelector('a.btn-pricing-primary');
+      if (btn1) btn1.innerHTML = T['btn-price-2'][lang];
+      const note1 = cards[1].querySelector('.pricing-note');
+      if (note1) note1.innerHTML = T['price-note'][lang];
+    }
+    setArr('.pricing-trust span', ['price-trust-1','price-trust-2']);
+
+    // FAQ
+    set('.faq .section-tag',   'faq-tag');
+    set('.faq .section-title', 'faq-title');
+    const faqQs = $$('.faq-q span:first-child');
+    const faqAs = $$('.faq-a p');
+    const faqQKeys = ['faq-q-1','faq-q-2','faq-q-3','faq-q-4','faq-q-5','faq-q-6'];
+    const faqAKeys = ['faq-a-1','faq-a-2','faq-a-3','faq-a-4','faq-a-5','faq-a-6'];
+    faqQs.forEach((el, i) => { if (T[faqQKeys[i]]) el.innerHTML = T[faqQKeys[i]][lang]; });
+    faqAs.forEach((el, i) => { if (T[faqAKeys[i]]) el.innerHTML = T[faqAKeys[i]][lang]; });
+
+    // Contact
+    set('.contact .section-tag',   'contact-tag');
+    set('.contact .section-title', 'contact-title');
+    set('.contact .section-sub',   'contact-sub');
+    setArr('.contact-label', ['cf-name-lbl','cf-email-lbl','cf-msg-lbl']);
+    set('.contact-submit', 'cf-submit');
+    const successP = $('.contact-success p');
+    if (successP) successP.innerHTML = T['cf-success'][lang];
+
+    // Final CTA
+    set('.final-cta-title', 'final-title');
+    set('.final-cta-sub',   'final-sub');
+    const btnFinal = $('.btn-final span');
+    if (btnFinal) btnFinal.innerHTML = T['btn-final'][lang];
+    else {
+      const bf = $('.btn-final');
+      if (bf && bf.childNodes[0]) bf.childNodes[0].textContent = '\n        ' + T['btn-final'][lang] + '\n        ';
+    }
+
+    // Footer
+    set('.footer-tagline', 'footer-tagline');
+    setArr('.footer-col-title', ['footer-prod','footer-family','footer-comp']);
+    set('.footer-bottom span', 'footer-copy');
+    const footerLinks = $$('.footer-col a');
+    // Footer product col links
+    const fcols = $$('.footer-col');
+    if (fcols[0]) {
+      const as = fcols[0].querySelectorAll('a');
+      if (as[0]) as[0].innerHTML = T['footer-login'][lang];
+      if (as[1]) as[1].innerHTML = T['footer-price'][lang];
+    }
+    if (fcols[2]) {
+      const as = fcols[2].querySelectorAll('a');
+      if (as[1]) as[1].innerHTML = T['footer-terms'][lang];
+      if (as[2]) as[2].innerHTML = T['footer-privacy'][lang];
+      if (as[3]) as[3].innerHTML = T['footer-refund'][lang];
+    }
+  }
+
+  // Init on load
+  document.addEventListener('DOMContentLoaded', () => {
+    if (currentLang === 'en') {
+      applyLang('en');
+      document.getElementById('btn-ru').classList.remove('active');
+      document.getElementById('btn-en').classList.add('active');
+    }
+  });
+  </script>
 
 </body>
 </html>
