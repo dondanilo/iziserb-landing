@@ -59,6 +59,7 @@
           <button class="lang-btn active" id="btn-ru" onclick="switchLang('ru')">RU</button>
           <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
         </div>
+        <a href="/blog/" class="nav-login">Блог</a>
         <a href="https://cabinet.iziserb.com" class="nav-login" data-i18n="nav-login">Войти в кабинет</a>
         <a href="https://iziserb.lemonsqueezy.com/checkout/buy/f3c32356-104a-49e4-bbdb-55259380b00b" class="nav-cta" data-i18n="nav-cta">Попробовать бесплатно</a>
       </div>
@@ -1112,6 +1113,46 @@
       if (as[1]) as[1].innerHTML = T['footer-terms'][lang];
       if (as[2]) as[2].innerHTML = T['footer-privacy'][lang];
       if (as[3]) as[3].innerHTML = T['footer-refund'][lang];
+    }
+  }
+
+  // ============================================================
+  // Contact form → Telegram
+  // ============================================================
+  async function submitContactForm() {
+    const name    = document.getElementById('cf-name').value.trim();
+    const email   = document.getElementById('cf-email').value.trim();
+    const message = document.getElementById('cf-message').value.trim();
+
+    if (!name || !email || !message) {
+      alert(currentLang === 'ru' ? 'Пожалуйста, заполните все поля.' : 'Please fill in all fields.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert(currentLang === 'ru' ? 'Введите корректный email.' : 'Please enter a valid email.');
+      return;
+    }
+
+    const btn = document.querySelector('.contact-submit');
+    btn.disabled = true;
+    btn.textContent = currentLang === 'ru' ? 'Отправляем...' : 'Sending...';
+
+    try {
+      const res = await fetch('https://iziserb-webhook.vercel.app/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, subject: 'Сайт iziserb.com', message })
+      });
+      if (!res.ok) throw new Error('Server error');
+      document.getElementById('contact-form-block').style.display = 'none';
+      document.getElementById('contact-success').style.display = 'flex';
+    } catch (e) {
+      alert(currentLang === 'ru'
+        ? 'Не удалось отправить. Напишите напрямую: support@iziserb.com'
+        : 'Could not send. Write directly: support@iziserb.com');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = currentLang === 'ru' ? 'Отправить' : 'Send';
     }
   }
 
