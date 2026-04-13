@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сербская грамматика для начинающих: главное за 10 минут | IziSerb</title>
+  <meta name="description" content="Основы сербской грамматики для русскоязычных: падежи, род, время глаголов, алфавит. Без лишней теории — только то, что нужно для общения.">
+  <link rel="canonical" href="https://iziserb.com/blog/serbskiy-grammatika-nachinayuschikh.html">
+  <meta property="og:title" content="Сербская грамматика для начинающих: главное за 10 минут">
+  <meta property="og:description" content="Падежи, род, глаголы — всё главное из сербской грамматики для тех, кто начинает с нуля.">
+  <meta property="og:url" content="https://iziserb.com/blog/serbskiy-grammatika-nachinayuschikh.html">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://iziserb.com/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.75; color: #333; background: #fff; }
+    .content { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    h1 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 38px; line-height: 1.2; color: #1a1a1a; margin: 32px 0 16px; }
+    h2 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 26px; margin-top: 48px; margin-bottom: 16px; color: #1a1a1a; }
+    h3 { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 20px; color: #1a1a1a; margin: 32px 0 12px; }
+    p { margin-bottom: 16px; }
+    a { color: #1A7FD4; }
+    ul, ol { padding-left: 24px; margin-bottom: 16px; }
+    li { margin-bottom: 8px; }
+    .breadcrumb { font-size: 14px; color: #888; margin: 20px 0 8px; }
+    .breadcrumb a { color: #888; text-decoration: none; }
+    .breadcrumb a:hover { color: #1A7FD4; }
+    .reading-time { display: inline-block; background: #E8F4FF; color: #0f4d8a; font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 24px; }
+    table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 16px; }
+    thead th { background: #1a1a1a; color: white; padding: 12px 16px; text-align: left; font-family: 'Nunito', sans-serif; font-weight: 700; }
+    tbody tr:nth-child(odd) { background: #f9f9f9; }
+    tbody tr:nth-child(even) { background: white; }
+    tbody td { padding: 10px 16px; border-bottom: 1px solid #eee; }
+    tbody td:first-child { font-size: 18px; font-weight: 700; color: #1A7FD4; font-family: 'Nunito', sans-serif; }
+    .example-block { background: #f0f7ff; border-left: 4px solid #1A7FD4; padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+    .example-block .sr { font-size: 18px; font-weight: 600; color: #1a1a1a; }
+    .example-block .ru { color: #555; }
+    .info-box { background: #E8F4FF; border: 1px solid #bdd8f5; border-radius: 12px; padding: 20px 24px; margin: 32px 0; }
+    .info-box h3 { margin-top: 0; color: #0f4d8a; }
+    .good-box { background: #f0fff4; border: 1px solid #88d8a0; border-radius: 12px; padding: 20px 24px; margin: 32px 0; }
+    .good-box h3 { margin-top: 0; color: #1a5c2a; }
+    .warning-box { background: #fff8e6; border: 1px solid #ffd080; border-radius: 12px; padding: 20px 24px; margin: 32px 0; }
+    .warning-box h3 { margin-top: 0; color: #a06000; }
+    .cta-box { background: linear-gradient(135deg, #1A7FD4, #1265B0); color: white; border-radius: 16px; padding: 32px; margin: 48px 0; text-align: center; }
+    .cta-box h3 { color: white; margin-top: 0; font-size: 22px; }
+    .cta-box p { margin-bottom: 20px; opacity: 0.92; }
+    .cta-btn { display: inline-block; background: white; color: #1A7FD4; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 16px; padding: 14px 32px; border-radius: 50px; text-decoration: none; }
+    .related-links { background: #f9f9f9; border-radius: 12px; padding: 24px; margin: 48px 0; }
+    .related-links h3 { margin-top: 0; }
+    footer { text-align: center; padding: 40px 24px; color: #888; font-size: 14px; border-top: 1px solid #eee; margin-top: 64px; }
+    @media (max-width: 600px) { h1 { font-size: 28px; } table { font-size: 14px; } }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "Article", "headline": "Сербская грамматика для начинающих: главное за 10 минут", "description": "Основы сербской грамматики для русскоязычных без лишней теории.", "url": "https://iziserb.com/blog/serbskiy-grammatika-nachinayuschikh.html", "datePublished": "2026-04-13", "dateModified": "2026-04-13", "author": { "@type": "Organization", "name": "IziSerb" }, "publisher": { "@type": "Organization", "name": "IziSerb", "url": "https://iziserb.com" } },
+      { "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "IziSerb", "item": "https://iziserb.com" }, { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://iziserb.com/blog/" }, { "@type": "ListItem", "position": 3, "name": "Сербская грамматика", "item": "https://iziserb.com/blog/serbskiy-grammatika-nachinayuschikh.html" } ] }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav style="background:white;border-bottom:1px solid #e5e5e5;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;">
+  <a href="https://iziserb.com" style="font-family:Nunito,sans-serif;font-weight:900;font-size:22px;color:#1a1a1a;text-decoration:none;">🇷🇸 IziSerb</a>
+  <a href="https://iziserb.lemonsqueezy.com/checkout/buy/f3c32356-104a-49e4-bbdb-55259380b00b" style="background:#1A7FD4;color:white;padding:10px 20px;border-radius:50px;font-family:Nunito,sans-serif;font-weight:700;text-decoration:none;font-size:15px;">Попробовать бесплатно</a>
+</nav>
+
+<div class="content">
+  <div class="breadcrumb">
+    <a href="https://iziserb.com">IziSerb</a> › <a href="/blog/">Блог</a> › Грамматика для начинающих
+  </div>
+
+  <h1>Сербская грамматика для начинающих: главное за 10 минут</h1>
+  <span class="reading-time">⏱ 11 минут чтения</span>
+
+  <p>Хорошая новость: русскоязычным учить сербскую грамматику намного проще, чем любому другому. Оба языка — славянские, со схожей структурой, падежами и глагольными формами. В этой статье — только самое важное для старта, без сложной теории.</p>
+
+  <div class="good-box">
+    <h3>✅ Что вам уже знакомо из русского</h3>
+    <ul>
+      <li>Падежи (в сербском их 7, как в русском)</li>
+      <li>Три грамматических рода (мужской, женский, средний)</li>
+      <li>Глаголы спрягаются по лицам и числам</li>
+      <li>Порядок слов относительно свободный</li>
+      <li>Множество похожих корней: вода, рука, брат, мать</li>
+    </ul>
+  </div>
+
+  <h2>🔤 Два алфавита — одно произношение</h2>
+
+  <p>Сербский использует оба алфавита: кириллический и латинский. В повседневной жизни чаще встречается латиница (вывески, интернет, мессенджеры). На официальных документах — кириллица.</p>
+
+  <table>
+    <thead><tr><th>Кириллица</th><th>Латиница</th><th>Звук</th></tr></thead>
+    <tbody>
+      <tr><td>Ж</td><td>Ž</td><td>как «ж» в «жара»</td></tr>
+      <tr><td>Ш</td><td>Š</td><td>как «ш» в «шум»</td></tr>
+      <tr><td>Ч</td><td>Č</td><td>как «ч» в «чай»</td></tr>
+      <tr><td>Ћ</td><td>Ć</td><td>мягче, чем «ч» — ближе к «тьч»</td></tr>
+      <tr><td>Ђ</td><td>Đ</td><td>мягкое «дж»</td></tr>
+      <tr><td>Џ</td><td>Dž</td><td>твёрдое «дж» как в «джунгли»</td></tr>
+      <tr><td>Љ</td><td>Lj</td><td>мягкое «ль» как в «люди»</td></tr>
+      <tr><td>Њ</td><td>Nj</td><td>мягкое «нь» как в «нянь»</td></tr>
+      <tr><td>Ј</td><td>J</td><td>как «й» в «йогурт»</td></tr>
+    </tbody>
+  </table>
+
+  <div class="info-box">
+    <h3>💡 Главное правило сербского</h3>
+    <p><strong>«Пиши как слышишь, читай как написано»</strong> — в сербском фонетическое письмо. Каждой букве соответствует ровно один звук. Никаких «ъ», «ь», «е» которые читаются как «йэ». Это огромное преимущество перед русским!</p>
+  </div>
+
+  <h2>👤 Роды существительных</h2>
+
+  <p>В сербском три рода, как в русском. Определить род чаще всего можно по окончанию:</p>
+
+  <table>
+    <thead><tr><th>Окончание</th><th>Род</th><th>Примеры</th></tr></thead>
+    <tbody>
+      <tr><td>согласная</td><td>Мужской (мушки)</td><td>брат, стол, град (город)</td></tr>
+      <tr><td>-а</td><td>Женский (женски)</td><td>жена, вода, рука</td></tr>
+      <tr><td>-о, -е</td><td>Средний (средњи)</td><td>море, дете (дитя), место</td></tr>
+    </tbody>
+  </table>
+
+  <div class="example-block">
+    <div class="sr">Брат је добар. / Сестра је добра. / Дете је добро.</div>
+    <div class="ru">Брат хороший. / Сестра хорошая. / Дитя хорошее.</div>
+  </div>
+
+  <h2>📐 Падежи в сербском</h2>
+
+  <p>В сербском 7 падежей — на один больше, чем в русском. Добавлен <strong>вокатив</strong> — падеж обращения. Его используют, когда зовут человека по имени.</p>
+
+  <table>
+    <thead><tr><th>Падеж</th><th>Сербское название</th><th>Вопрос</th><th>Пример</th></tr></thead>
+    <tbody>
+      <tr><td>Именительный</td><td>Номинатив</td><td>Ко? Шта?</td><td>брат, вода</td></tr>
+      <tr><td>Родительный</td><td>Генитив</td><td>Кога? Чега?</td><td>брата, воде</td></tr>
+      <tr><td>Дательный</td><td>Датив</td><td>Коме? Чему?</td><td>брату, води</td></tr>
+      <tr><td>Винительный</td><td>Акузатив</td><td>Кога? Шта?</td><td>брата, воду</td></tr>
+      <tr><td>Звательный</td><td>Вокатив</td><td>—</td><td>брате!, водо!</td></tr>
+      <tr><td>Инструментальный</td><td>Инструментал</td><td>Ким? Чим?</td><td>братом, водом</td></tr>
+      <tr><td>Предложный</td><td>Локатив</td><td>О коме? О чему?</td><td>о брату, о води</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning-box">
+    <h3>⚠️ Не пугайтесь падежей!</h3>
+    <p>Для начала достаточно знать именительный и винительный — ими покрывается большинство разговорных ситуаций. Падежи изучают постепенно через практику, а не зазубривание таблиц.</p>
+  </div>
+
+  <h2>🔢 Глаголы: настоящее время</h2>
+
+  <p>Глаголы спрягаются по лицам и числам. Рассмотрим два ключевых глагола:</p>
+
+  <h3>БИТИ (быть) — настоящее время</h3>
+
+  <table>
+    <thead><tr><th>Лицо</th><th>Полная форма</th><th>Краткая</th><th>Перевод</th></tr></thead>
+    <tbody>
+      <tr><td>ја (я)</td><td>јесам</td><td>сам</td><td>я есть</td></tr>
+      <tr><td>ти (ты)</td><td>јеси</td><td>си</td><td>ты есть</td></tr>
+      <tr><td>он/она/оно</td><td>јесте</td><td>је</td><td>он/она есть</td></tr>
+      <tr><td>ми (мы)</td><td>јесмо</td><td>смо</td><td>мы есть</td></tr>
+      <tr><td>ви (вы)</td><td>јесте</td><td>сте</td><td>вы есть</td></tr>
+      <tr><td>они (они)</td><td>јесу</td><td>су</td><td>они есть</td></tr>
+    </tbody>
+  </table>
+
+  <div class="example-block">
+    <div class="sr">Ја сам студент. / Она је лекар. / Они су пријатељи.</div>
+    <div class="ru">Я студент. / Она врач. / Они друзья.</div>
+  </div>
+
+  <h3>ИМАТИ (иметь) — настоящее время</h3>
+
+  <table>
+    <thead><tr><th>Лицо</th><th>Форма</th><th>Перевод</th></tr></thead>
+    <tbody>
+      <tr><td>ја</td><td>имам</td><td>у меня есть</td></tr>
+      <tr><td>ти</td><td>имаш</td><td>у тебя есть</td></tr>
+      <tr><td>он/она</td><td>има</td><td>у него/неё есть</td></tr>
+      <tr><td>ми</td><td>имамо</td><td>у нас есть</td></tr>
+      <tr><td>ви</td><td>имате</td><td>у вас есть</td></tr>
+      <tr><td>они</td><td>имају</td><td>у них есть</td></tr>
+    </tbody>
+  </table>
+
+  <div class="example-block">
+    <div class="sr">Немам аутобус. / Имаш времена? / Она нема паре.</div>
+    <div class="ru">У меня нет автобуса. / У тебя есть время? / У неё нет денег.</div>
+  </div>
+
+  <h2>❓ Вопросы и отрицание</h2>
+
+  <p>Вопрос образуется добавлением частицы <strong>да ли</strong> или просто интонацией:</p>
+
+  <div class="example-block">
+    <div class="sr">Говориш српски? / Да ли говориш српски?</div>
+    <div class="ru">Ты говоришь по-сербски?</div>
+  </div>
+
+  <p>Отрицание добавляется приставкой <strong>не-</strong> к глаголу:</p>
+
+  <div class="example-block">
+    <div class="sr">Не говорим српски. / Нисам студент. / Нема проблема.</div>
+    <div class="ru">Я не говорю по-сербски. / Я не студент. / Нет проблем.</div>
+  </div>
+
+  <h2>🕐 Времена глаголов</h2>
+
+  <p>В сербском несколько прошедших времён, но в разговорной речи используется одно — <strong>перфект</strong>:</p>
+
+  <table>
+    <thead><tr><th>Время</th><th>Как образуется</th><th>Пример</th><th>Перевод</th></tr></thead>
+    <tbody>
+      <tr><td>Настоящее</td><td>основа + окончание</td><td>радим</td><td>я работаю</td></tr>
+      <tr><td>Прошедшее</td><td>сам/си/је + причастие на -о/-ла/-ло</td><td>радио сам</td><td>я работал</td></tr>
+      <tr><td>Будущее</td><td>ћу/ћеш/ће + инфинитив</td><td>радићу</td><td>я буду работать</td></tr>
+    </tbody>
+  </table>
+
+  <div class="example-block">
+    <div class="sr">Радио сам јуче. / Радим сада. / Радићу сутра.</div>
+    <div class="ru">Я работал вчера. / Я работаю сейчас. / Я буду работать завтра.</div>
+  </div>
+
+  <h2>🤝 Обращение: ти vs Ви</h2>
+
+  <p>Как и в русском, в сербском есть вежливое «Вы» (с большой буквы) и простое «ти». Правила похожие: с незнакомцами и старшими — Ви, с друзьями и детьми — ти. В рабочей среде сербы переходят на «ти» довольно быстро.</p>
+
+  <div class="example-block">
+    <div class="sr">Говорите ли Ви енглески? (вежливо) / Говориш ли енглески? (неформально)</div>
+    <div class="ru">Вы говорите по-английски? / Ты говоришь по-английски?</div>
+  </div>
+
+  <div class="cta-box">
+    <h3>Практикуйте грамматику в IziSerb</h3>
+    <p>Теория без практики быстро забывается. В нашем приложении — интерактивные упражнения, карточки и квизы по грамматике сербского для русскоязычных.</p>
+    <a class="cta-btn" href="https://iziserb.lemonsqueezy.com/checkout/buy/f3c32356-104a-49e4-bbdb-55259380b00b">Начать бесплатно →</a>
+  </div>
+
+  <div class="related-links">
+    <h3>Читайте также</h3>
+    <ul>
+      <li><a href="/blog/serbskiy-alfavit.html">Сербский алфавит: кириллица и латиница</a></li>
+      <li><a href="/blog/serbskiy-glagoly.html">50 главных сербских глаголов</a></li>
+      <li><a href="/blog/serbskiy-chislitelnyye.html">Числа в сербском языке</a></li>
+      <li><a href="/blog/slozhno-li-uchit-serbskiy.html">Сложно ли учить сербский русскому?</a></li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  © 2026 IziSerb · <a href="https://iziserb.com">iziserb.com</a>
+</footer>
+
+</body>
+</html>
