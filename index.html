@@ -715,6 +715,19 @@
           <a href="#" onclick="document.querySelector('.faq').scrollIntoView({behavior:'smooth'})">FAQ</a>
         </div>
         <div class="footer-col">
+          <div class="footer-col-title">Блог</div>
+          <a href="/blog/">Все статьи</a>
+          <a href="/blog/serbskiy-alfavit.html">Сербский алфавит за 1 вечер</a>
+          <a href="/blog/kak-govorit-po-serbski.html">Как говорить по-сербски с нуля</a>
+          <a href="/blog/serbskiy-frazy-dlya-serbii.html">50 фраз для жизни в Сербии</a>
+          <a href="/blog/serbskiy-yazyk-dlya-russkikh.html">Сербский для русских</a>
+          <a href="/blog/serbskiy-u-vracha.html">Сербский у врача</a>
+          <a href="/blog/serbskiy-chislitelnyye.html">Числа на сербском</a>
+          <a href="/blog/serbskaya-kukhnya-slovar.html">Сербская кухня: словарь</a>
+          <a href="/blog/intervalnoe-povtorenie-serbskiy.html">Интервальное повторение</a>
+          <a href="/blog/arenda-kvartiry-serbiya.html">Аренда квартиры в Сербии</a>
+        </div>
+        <div class="footer-col">
           <div class="footer-col-title">Семья Izi</div>
           <a href="https://izigreek.com">IziGreek 🇬🇷 — Греческий</a>
           <a href="https://iziserb.com">IziSerb 🇷🇸 — Сербский</a>
@@ -929,6 +942,7 @@
     'footer-prod':   { ru: 'Продукт',  en: 'Product' },
     'footer-login':  { ru: 'Войти в кабинет', en: 'Sign In' },
     'footer-price':  { ru: 'Цены',    en: 'Pricing' },
+    'footer-blog':   { ru: 'Блог', en: 'Blog' },
     'footer-family': { ru: 'Семья Izi', en: 'Izi Family' },
     'footer-comp':   { ru: 'Компания', en: 'Company' },
     'footer-terms':  { ru: 'Условия использования', en: 'Terms of Use' },
@@ -1099,18 +1113,18 @@
 
     // Footer
     set('.footer-tagline', 'footer-tagline');
-    setArr('.footer-col-title', ['footer-prod','footer-family','footer-comp']);
+    setArr('.footer-col-title', ['footer-prod','footer-blog','footer-family','footer-comp']);
     set('.footer-bottom span', 'footer-copy');
-    const footerLinks = $$('.footer-col a');
-    // Footer product col links
+    // Footer product col links (col 0)
     const fcols = $$('.footer-col');
     if (fcols[0]) {
       const as = fcols[0].querySelectorAll('a');
       if (as[0]) as[0].innerHTML = T['footer-login'][lang];
       if (as[1]) as[1].innerHTML = T['footer-price'][lang];
     }
-    if (fcols[2]) {
-      const as = fcols[2].querySelectorAll('a');
+    // Footer company col links (col 3)
+    if (fcols[3]) {
+      const as = fcols[3].querySelectorAll('a');
       if (as[1]) as[1].innerHTML = T['footer-terms'][lang];
       if (as[2]) as[2].innerHTML = T['footer-privacy'][lang];
       if (as[3]) as[3].innerHTML = T['footer-refund'][lang];
