@@ -22,6 +22,9 @@
 
   <link rel="canonical" href="https://iziserb.com/">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="alternate" hreflang="ru" href="https://iziserb.com/">
+  <link rel="alternate" hreflang="en" href="https://iziserb.com/">
+  <link rel="alternate" hreflang="x-default" href="https://iziserb.com/">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://iziserb.com/">
@@ -29,6 +32,7 @@
   <meta property="og:description" content="Реальные диалоги, сценарии из жизни на Балканах и умное повторение. Первая неделя бесплатно.">
   <meta property="og:image" content="https://iziserb.com/og-image.png">
   <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="en_US">
   <meta property="og:site_name" content="IziSerb">
 
   <meta name="twitter:card" content="summary_large_image">
@@ -44,6 +48,118 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="style.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://iziserb.com/#organization",
+        "name": "IziSerb",
+        "url": "https://iziserb.com",
+        "logo": "https://iziserb.com/og-image.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@iziserb.com",
+          "contactType": "customer support"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://iziserb.com/#website",
+        "url": "https://iziserb.com",
+        "name": "IziSerb",
+        "publisher": { "@id": "https://iziserb.com/#organization" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Нужно ли знать сербский алфавит чтобы начать?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Нет. Каждое сербское слово и фраза сопровождается транскрипцией русскими буквами. Вы сможете читать и произносить с первого дня. Алфавит изучается постепенно в процессе — а если вы знаете русский, сербская кириллица освоится за один вечер."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Сколько времени нужно тратить в день?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Достаточно 10 минут в день. Один урок занимает 5–10 минут. Главное — регулярность. Ежедневные 10 минут дают лучший результат чем 2 часа раз в неделю."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Чем IziSerb отличается от других приложений?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Большинство приложений созданы для всех языков и всех аудиторий. IziSerb создан специально для русскоязычных жителей Сербии и Балкан — с реальными сербскими сценариями (боравак, банки, аренда, рынок), транскрипцией на русском и фразами которые реально используют сербы."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Как работает бесплатный период?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "7 дней полного доступа без каких-либо ограничений. После пробного периода начнётся платная подписка. Отменить можно в любой момент в личном кабинете LemonSqueezy."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Можно ли отменить подписку?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Да, в любой момент через личный кабинет LemonSqueezy. После отмены подписка остаётся активной до конца оплаченного периода."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "На каких устройствах работает приложение?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "IziSerb — это PWA (Progressive Web App). Работает в браузере на любом устройстве: iPhone, Android, планшет, компьютер. Можно установить на экран телефона как обычное приложение. Работает даже офлайн."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "IziSerb",
+        "applicationCategory": "EducationApplication",
+        "operatingSystem": "Web, iOS, Android",
+        "description": "Приложение для изучения сербского языка для русскоязычных жителей Сербии и Балкан. Реальные сценарии, умное повторение SRS, 10 минут в день.",
+        "url": "https://cabinet.iziserb.com",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Помесячная подписка",
+            "price": "8.99",
+            "priceCurrency": "EUR",
+            "priceValidUntil": "2027-12-31",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Годовая подписка",
+            "price": "59.88",
+            "priceCurrency": "EUR",
+            "priceValidUntil": "2027-12-31",
+            "availability": "https://schema.org/InStock"
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "reviewCount": "3"
+        }
+      }
+    ]
+  }
+  </script>
 
 </head>
 <body>
