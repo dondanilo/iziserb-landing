@@ -307,5 +307,11 @@
   © 2026 IziSerb · <a href="https://iziserb.com">iziserb.com</a>
 </footer>
 
+<script>
+if(new URLSearchParams(location.search).get("ref")==="cabinet"){
+  document.head.insertAdjacentHTML("beforeend","<style>.cta-box{display:none!important}nav a[href*=\"lemonsqueezy\"]{display:none!important}<\/style>");
+  document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll("a[href*=\"lemonsqueezy\"]").forEach(function(a){var d=a.closest("div");if(d)d.style.display="none";});});
+}
+</script>
 </body>
 </html>

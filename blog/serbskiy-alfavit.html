@@ -272,5 +272,11 @@
   <p>© 2026 IziSerb — Сербский язык для русскоязычных жителей Балкан</p>
   <p style="margin-top:10px"><a href="https://iziserb.com" style="color:#aaa">Главная</a> · <a href="/blog/" style="color:#aaa">Блог</a></p>
 </footer>
+<script>
+if(new URLSearchParams(location.search).get("ref")==="cabinet"){
+  document.head.insertAdjacentHTML("beforeend","<style>.cta-box{display:none!important}nav a[href*=\"lemonsqueezy\"]{display:none!important}<\/style>");
+  document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll("a[href*=\"lemonsqueezy\"]").forEach(function(a){var d=a.closest("div");if(d)d.style.display="none";});});
+}
+</script>
 </body>
 </html>
